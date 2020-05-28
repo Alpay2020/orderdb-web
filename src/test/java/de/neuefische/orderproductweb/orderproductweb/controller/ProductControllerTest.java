@@ -51,7 +51,7 @@ class ProductControllerTest {
         assertEquals(0, products.length);
     }
 
-    @Test //ProductConroller@POSTMapping("add")
+    /*@Test //ProductConroller@POSTMapping("add")
     public void postProductAndGetProductsShouldReturnAllProducts(){
 
         //POST
@@ -69,7 +69,7 @@ class ProductControllerTest {
         assertEquals(HttpStatus.OK, statusCode);
         assertEquals(1, products.length);
         assertEquals(new Product("Tomate", "23"), products[0]);
-    }
+    }*/
     @Test//ProductConroller@PUTMapping("add")
     public void putProductShouldAddProductToDb() {
         //GIVEN
