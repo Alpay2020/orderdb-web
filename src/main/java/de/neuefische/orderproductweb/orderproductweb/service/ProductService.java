@@ -5,6 +5,7 @@ import de.neuefische.orderproductweb.orderproductweb.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +24,23 @@ public class ProductService {
 
     public Optional<Product> getProducts(String id) {
         return productDb.getProductById(id);
+    }
+    public List<Product> searchProductsByName(String query){
+        List<Product> matchingProducts = new ArrayList<Product>();
+        if (query == null){
+            return productDb.getProducts();
+        }
+        for (int i = 0; i < productDb.getProducts().size(); i++) {
+            Product product = productDb.getProducts().get(i);
+            if (product.getName().startsWith(query)){
+                matchingProducts.add(product);
+            }
+        }
+        return matchingProducts;
+    }
+
+    public Product addProduct(Product newproduct) {
+        productDb.add(newproduct);
+        return newproduct;
     }
 }

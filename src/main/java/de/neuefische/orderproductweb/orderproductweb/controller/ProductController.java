@@ -1,13 +1,11 @@
 package de.neuefische.orderproductweb.orderproductweb.controller;
 
 import de.neuefische.orderproductweb.orderproductweb.db.ProductDb;
+import de.neuefische.orderproductweb.orderproductweb.model.Order;
 import de.neuefische.orderproductweb.orderproductweb.model.Product;
 import de.neuefische.orderproductweb.orderproductweb.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,4 +29,13 @@ public class ProductController {
     public Optional<Product> getProducts(@PathVariable String id) {
         return productService.getProducts(id);
     }
+    @GetMapping("search")
+    public List<Product> searchProductsByName(@RequestParam(name = "q", required = false)String query){
+        return productService.searchProductsByName(query);
+    }
+    @PutMapping("add")
+    public Product addProduct(@RequestBody Product newproduct){
+        return productService.addProduct(newproduct);
+    }
+
 }
